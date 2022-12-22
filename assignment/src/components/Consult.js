@@ -2,7 +2,7 @@ import React from 'react'
 
 const Consult = () => {
   return (
-    <div>Consult</div>
+    <div style={{minHeight:400}}>Consult</div>
   )
 }
 

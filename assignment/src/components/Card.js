@@ -2,6 +2,7 @@ import React from 'react'
 import './Book.css'
 import { Button } from '@mui/material';
 import { CartData } from '../Context';
+import DoneIcon from '@mui/icons-material/Done';
 
 const Card = ({data}) => {
   const {
@@ -25,8 +26,8 @@ const Card = ({data}) => {
             </div>
             </div>
             {cart.some((p)=>p.id === data.id)?
-            <Button style={{paddingLeft:7,fontSize:12,border:'1px solid blue'}} onClick={()=>dispatchMain({type:'REMOVE_FROM_CART',payload:data,})}>Remove from cart</Button>:
-            <Button style={{paddingLeft:45,fontSize:12,border:'1px solid blue'}} onClick={()=>dispatchMain({type:'ADD_TO_CART',payload:data,})}>Add to cart</Button>}
+            <Button style={{marginLeft:40,paddingLeft:12,paddingRight:10,fontSize:12,border:'2px solid blue',color:'white',backgroundColor:'blue'}} onClick={()=>dispatchMain({type:'REMOVE_FROM_CART',payload:data,})}><DoneIcon/>Added</Button>:
+            <Button style={{marginLeft:40,fontSize:12,border:'2px solid blue'}} onClick={()=>dispatchMain({type:'ADD_TO_CART',payload:data,})}>Add to cart</Button>}
         </div>
       </div>
   )

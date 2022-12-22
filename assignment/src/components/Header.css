@@ -7,27 +7,45 @@
 }
 .head-nav{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    /* padding-left: 80px; */
+    /* margin-right: 140px; */
     /* border: 1px solid black; */
-    height: 45px;
+    width: 100%;
+    height: 60px;
     background-color: rgb(52, 34, 129);
     align-items: center;
+    /* border:  1px solid black; */
 }
 .card-top{
     /* background-color: violet; */
     color: white;
     margin-left: 20px;
-    width: 150px;
+    /* width: 150px; */
 }
 .head-nav-in{
     display: flex;
-    
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: white;
+    /* border: 1px solid black; */
+}
+.head-nav-ins{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: white;
+    margin-left: 240px;
 }
 .head-log{
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 55px;
+    padding-left: 80px;
+    padding-right: 110px;
 }
 .head-search{
     height: 50px;

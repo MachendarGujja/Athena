@@ -6,6 +6,7 @@ import Consult from './components/Consult';
 import Book from './components/Book';
 import Order from './components/Order';
 import { SliderData } from './components/SliderData';
+import Cart from './components/Cart';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path='/consult' element={<Consult/>}/>
       <Route path='/order' element={<Order/>}/>
       <Route path='/' element={<Book slides={SliderData}/>}/>
+      <Route path='/cart' element={<Cart />}/>
     </Routes>
     <Footer/>
     </BrowserRouter>

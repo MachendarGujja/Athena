@@ -2,7 +2,7 @@ import React from 'react'
 
 const Order = () => {
   return (
-    <div>Order</div>
+    <div style={{minHeight:400}}>Order</div>
   )
 }
 

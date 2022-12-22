@@ -3,7 +3,9 @@ import { mainReducer} from './Reducer';
 const Cart = createContext();
 const Context = ({children}) => {
 const [main, dispatchMain] = useReducer(mainReducer,{
-    cart:[]
+    cart:[],
+    search:'',
+    button:false,
   })
   return (
     <Cart.Provider value={{main,dispatchMain}}>{children}</Cart.Provider>

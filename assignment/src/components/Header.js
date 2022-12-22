@@ -3,48 +3,60 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { Button } from '@mui/material';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import {Link} from 'react-router-dom';
+import Badge from "@mui/material/Badge";
+import AddShoppingCartTwoToneIcon from '@mui/icons-material/AddShoppingCartTwoTone';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+// import LocationOnIcon from '@mui/icons-material/LocationOn';
 import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 // import InputLabel from '@mui/material/InputLabel';
+import { CartData } from '../Context';
 import SearchIcon from '@mui/icons-material/Search';
 export default function Header(){
+    const {
+      main:{
+          cart,button,search
+      },dispatchMain} = CartData();
+      console.log(search)
     return(
       <div className="head-main">
         <div className="head-nav">
             <div className="head-nav-in">
-            <Button className='card-top' >Consult</Button>
-            <Button className='card-top' >Order</Button>
-            <Button className='card-top' >Book</Button>
+            <Link to='/consult' onClick={()=>dispatchMain({type:'CLEAR_SEARCH'})} style={{display:'flex',alignItems:'center',marginRight:40,marginLeft:80}}><div style={{width:25,height:25,borderRadius:3,border:'1px solid white',margin:0}}></div><Button className='card-top' style={{color:'white'}}>Consult a Doctor</Button></Link>
+            <Link to='/order' onClick={()=>dispatchMain({type:'CLEAR_SEARCH'})} style={{display:'flex',alignItems:'center',marginRight:40}}><div style={{width:25,height:25,borderRadius:3,border:'1px solid white',margin:0}}></div><Button className='card-top' style={{color:'white'}}>Order Medicine</Button></Link>
+            <Link to='/' onClick={()=>dispatchMain({type:'CLEAR_SEARCH'})} style={{display:'flex',alignItems:'center'}}><div style={{width:25,height:25,borderRadius:3,border:'1px solid white',margin:0}}></div><Button className='card-top' style={{color:'white'}}>Book for Diagnostic</Button></Link>
             </div>
-            <div className="head-nav-in">
-                <FacebookIcon style={{color:'white'}}/>
-                <YouTubeIcon style={{color:'white'}}/>
-                <TwitterIcon style={{color:'white'}}/>
+            <div className="head-nav-ins">
+                <FacebookIcon style={{color:'white',fontSize:16,marginLeft:15}}/>
+                <YouTubeIcon style={{color:'white',fontSize:16,marginLeft:15}}/>
+                <TwitterIcon style={{color:'white',marginRight:90,fontSize:16,marginLeft:15}}/>
             </div>
         </div>
         <div className="head-log">
-            <div><h1>Logo</h1></div>
+            <Link to='/' onClick={()=>dispatchMain({type:'CLEAR_SEARCH'})}><h1>Logo</h1></Link>
             <div>
             <Button variant="outlined">Login|Signup</Button>
-            <AddShoppingCartIcon />
+            <Link to='/cart' onClick={()=>dispatchMain({type:'CLEAR_SEARCH'})}>
+            <Badge style={{cursor:'pointer',marginLeft:60}}   color="secondary" badgeContent={cart.length}>
+          <AddShoppingCartTwoToneIcon  style={{color:'black'}} titleAccess='Cart'/>{" "}
+        </Badge>
+        </Link>
             </div>
         </div>
         <div className="head-search">
             <div style={{display:'flex'}}>
-                <div >
+                {/* <div >
             <LocationOnIcon style={{height:37,width:27}} className='loc'/>
-                </div>
+                </div> */}
                 <div>
             <Autocomplete 
       id="country-select-demo"
       sx={{
-        width: { sm: 100, md: 200 },
+        width: { sm: 100, md: 230 },
         // fontSize:{md:15},
         "& .MuiInputBase-root": {
             height: 40
@@ -86,7 +98,8 @@ export default function Header(){
             "& .MuiInputBase-root": {
                 height: 40
             }
-            }}>
+            }}
+            onChange={(e)=>(button===true && search.length === 0)?(dispatchMain({type:'BTN'})):dispatchMain({type:'SEARCH',payload:e.target.value})} value={search}  className='in-css' type="text" placeholder="Search Items...">
           {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel> */}
           <OutlinedInput
             id="outlined-adornment-amount"
@@ -94,7 +107,7 @@ export default function Header(){
             // label="Amount"
           />
         </FormControl>
-        <Button style={{width:100,marginTop:10,height:35}} variant="contained" color="success">
+        <Button onClick={()=>dispatchMain({type:"BTN"})} style={{width:100,marginTop:10,height:35}} variant="contained" color="success">
                 Search
                 </Button>
             </div>
